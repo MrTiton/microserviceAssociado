@@ -12,42 +12,46 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
 @Entity
 @Table(name = "associado")
 public class Associado {
-
-	@Id
-	@GeneratedValue(generator = "increment")
+	
+    @Id
+    @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-	private Long id;
+    private Long id;
 
-	@Size(max = 150)
-	@NotEmpty
-	private String nome;
+    @Size(max = 150)
+    @NotEmpty
+    private String nome;
 	
-	@Size(max = 80)
-	@NotEmpty
-	private String email;
+    @Size(max = 80)
+    @NotEmpty
+    private String email;
 	
-	@Size(max = 15)
-	@NotEmpty
-	private String senha;
+    @Size(max = 15)
+    @NotEmpty
+    private String senha;
 	
-	@Size(max = 255)//talvez deve-se mudar para uma lista de arrays
-	private String competencias;
+    @Size(max = 255)//talvez deve-se mudar para uma lista de arrays
+    private String competencias;
 	
-	//cargo na cooperativa
-	@Size(max = 200)
-	private String cargo;
-	
-	@Size(max = 30)
+    //cargo na cooperativa
+    @Size(max = 200)
+    private String cargo;
+	 
+    @Size(max = 30)
     private String telefone;
-	
-	private Date nascimento;
+
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
+    private Date nascimento;
 	
     @Size(max = 100)
     @Column(name = "endereco_rua")
-	private String enderecoRua;
+    private String enderecoRua;
     
     @Size(max = 100)
     @Column(name = "endereco_bairro")
